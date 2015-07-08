@@ -21,29 +21,37 @@
   </form>
 {{/if}}
   
-  <label style="color:red; font-size:150%"><input type="checkbox" checked="{{urgentbox}}"/> URGENT</label>
+  <label class= "urgent-marker" style="color:red; font-size:150%"><input type="checkbox" checked="{{urgentbox}}"/> URGENT</label>
 </header>
 
+
+  <div class = "container1">
+    <header style = "color:red">
+      <h1>Urgent List</h1>
+      <button class="clearurgent">Clear All Urgents</button>
+    </header>
+    <ul style="color:red; font-size:120%">
+    {{#each urgents}}
+      {{> urgent}}
+    {{/each}}
+  </ul>
+  </div>
 
   <div class="container">
     <header>
       <h1>To Do List</h1>
 	  <button class="clear">Clear All Checked Tasks</button>
+
     </header>
-	<!--section for urgent tasks-->
-<!--	<ul style="color:red; font-size:120%">
-		lol
-		{{#each urgents}}
-			{{> urgents}}
-		{{/each}}
-	</ul>
--->	
+	
     <ul>
       {{#each tasks}}
         {{> task}}
       {{/each}}
     </ul>
   </div>
+
+  
 </body>
 
 <template name="task">
@@ -53,16 +61,17 @@
 
     <input type="checkbox" checked="{{checked}}" class="toggle-checked" />
 
-    <span class="text"><strong>{{username}}</strong>- {{text}}</span>
+    <span class="text">{{text}} - <strong>{{username}} </strong></span>
   </li>
 </template>
 
 <template name="urgent">
 	<li class="{{#if checked}}checked{{/if}}">
-    <button class="delete">&times;</button>
+
+    <button class="urgedelete">&times;</button>
 
     <input type="checkbox" checked="{{checked}}" class="toggle-checked" />
 
-    <span class="text">{{text}}</span>
+    <span class="text">{{text}} - <strong>{{username}}</strong></span>
   </li>
 </template>
